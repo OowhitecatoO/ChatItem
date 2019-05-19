@@ -186,7 +186,7 @@ public class ChatPacketListener extends PacketAdapter {
     public static String styleItem(ItemStack item, Storage c){
         String replacer = c.NAME_FORMAT;
         String amount = c.AMOUNT_FORMAT;
-        boolean dname = item.hasItemMeta() ? item.getItemMeta().hasDisplayName() : false;
+        boolean dname = item.hasItemMeta() && item.getItemMeta().hasDisplayName();
 
         if (item.getAmount() == 1) {
             if (c.FORCE_ADD_AMOUNT) {

@@ -144,9 +144,7 @@ public class ChatEventListener implements Listener {
         }
 
         String oldmsg = e.getMessage();
-        StringBuilder sb = new StringBuilder(oldmsg);
-        sb.append(SEPARATOR).append(e.getPlayer().getName());
-        e.setMessage(sb.toString());
+        e.setMessage(oldmsg + SEPARATOR + e.getPlayer().getName());
         Bukkit.getConsoleSender().sendMessage(String.format(e.getFormat(), e.getPlayer().getDisplayName(), oldmsg));
         if(!p.hasPermission("chatitem.ignore-cooldown")) {
             COOLDOWNS.put(p.getName(), System.currentTimeMillis() / 1000);
@@ -242,9 +240,7 @@ public class ChatEventListener implements Listener {
             return;
         }
 
-        StringBuilder sb = new StringBuilder(e.getMessage());
-        sb.append(SEPARATOR).append(e.getPlayer().getName());
-        e.setMessage(sb.toString());
+        e.setMessage(e.getMessage() + SEPARATOR + e.getPlayer().getName());
         if(!p.hasPermission("chatitem.ignore-cooldown")) {
             COOLDOWNS.put(p.getName(), System.currentTimeMillis() / 1000);
         }
