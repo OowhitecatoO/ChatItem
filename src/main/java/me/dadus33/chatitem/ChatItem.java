@@ -4,6 +4,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.ListenerPriority;
+import github.scarsz.discordsrv.DiscordSRV;
 import me.dadus33.chatitem.api.APIImplementation;
 import me.dadus33.chatitem.api.ChatItemAPI;
 import me.dadus33.chatitem.commands.CIReload;
@@ -13,6 +14,7 @@ import me.dadus33.chatitem.json.JSONManipulatorCurrent;
 import me.dadus33.chatitem.listeners.ChatEventListener;
 import me.dadus33.chatitem.listeners.ChatPacketListener;
 import me.dadus33.chatitem.listeners.ChatPacketValidator;
+import me.dadus33.chatitem.listeners.DiscordMessageListener;
 import me.dadus33.chatitem.utils.ProtocolSupportUtil;
 import me.dadus33.chatitem.utils.Storage;
 import org.bstats.Metrics;
@@ -119,6 +121,10 @@ public class ChatItem extends JavaPlugin {
         //Bukkit API listeners
         chatEventListener = new ChatEventListener(storage);
         Bukkit.getPluginManager().registerEvents(chatEventListener, this);
+
+        // Discord Message replacer
+        if (getServer().getPluginManager().isPluginEnabled("DiscordSRV"))
+            DiscordSRV.api.subscribe(new DiscordMessageListener(storage));
 
         //Check for existence of BaseComponent class (only on spigot)
         try {
