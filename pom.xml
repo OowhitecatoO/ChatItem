@@ -143,6 +143,12 @@
                         </goals>
                         <configuration>
                             <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <excludes>
+                                    <exclude>com.discordsrv:discordsrv</exclude>
+                                    <exclude>org.spigotmc:spigot</exclude>
+                                </excludes>
+                            </artifactSet>
                             <relocations>
                                 <relocation>
                                     <pattern>org.bstats</pattern>
@@ -154,7 +160,7 @@
                                 </relocation>
                                 <relocation>
                                     <pattern>com.github.steveice10</pattern>
-                                    <shadedPattern>me.dadus33.libs.opennbt</shadedPattern>
+                                    <shadedPattern>me.dadus33.libs.pennbt</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
