@@ -95,6 +95,12 @@
             <version>1.16.6</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.meowj</groupId>
+            <artifactId>LanguageUtils-Reloaded</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
