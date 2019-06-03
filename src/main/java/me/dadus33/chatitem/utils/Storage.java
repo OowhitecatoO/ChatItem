@@ -17,7 +17,6 @@ import java.util.logging.Level;
 public class Storage {
 
     private FileConfiguration conf;
-    public final HashMap<String, HashMap<Short, String>> TRANSLATIONS = new HashMap<>();
     public final Boolean COLOR_IF_ALREADY_COLORED;
     public final Boolean FORCE_ADD_AMOUNT;
     public final Boolean LET_MESSAGE_THROUGH;
@@ -48,17 +47,6 @@ public class Storage {
         this.conf = cnf;
         CONFIG_VERSION = conf.getInt("config-version");
         checkConfigVersion();
-        Set<String> keys = conf.getConfigurationSection("Translations").getKeys(false);
-        for (String key : keys) {
-            HashMap<Short, String> entry = new HashMap<>();
-            Set<String> subKeys = conf.getConfigurationSection("Translations.".concat(key)).getKeys(false);
-            for (String subKey : subKeys) {
-                entry.put(Short.parseShort(subKey), color(conf.getString("Translations.".concat(key).concat(".")
-                        .concat(subKey))));
-            }
-
-            TRANSLATIONS.put(key, entry);
-        }
         COOLDOWN = conf.getLong("General.cooldown");
         LIMIT = conf.getInt("General.limit");
         List<String> added = conf.getStringList("General.placeholders");
