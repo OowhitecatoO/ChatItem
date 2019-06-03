@@ -7,6 +7,7 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import com.meowj.langutils.lang.LanguageHelper;
 import me.dadus33.chatitem.ChatItem;
 import me.dadus33.chatitem.utils.ProtocolVersion;
 import me.dadus33.chatitem.utils.Storage;
@@ -207,18 +208,7 @@ public class ChatPacketListener extends PacketAdapter {
                 replacer = replacer.replace(NAME, trp);
             }
         } else {
-            HashMap<Short, String> translationSection = c.TRANSLATIONS.get(item.getType().name());
-            if(translationSection==null){
-                String trp = materialToName(item.getType());
-                replacer = replacer.replace(NAME, trp);
-            }else {
-                String translated = translationSection.get(item.getDurability());
-                if (translated != null) {
-                    replacer = replacer.replace(NAME, translated);
-                } else {
-                    replacer = replacer.replace(NAME, materialToName(item.getType()));
-                }
-            }
+            replacer = replacer.replace(NAME, LanguageHelper.getItemName(item, ""));
         }
         return replacer;
     }
