@@ -31,7 +31,7 @@ public class DiscordMessageListener {
         String itemName;
         final ItemStack itemStack = p.getInventory().getItemInMainHand();
         if (!itemStack.getType().equals(Material.AIR)) {
-            itemName = ChatPacketListener.styleItem(itemStack, config);
+            itemName = ChatPacketListener.styleItem(itemStack, config, "");
         } else {
             itemName = config.HAND_NAME
                     .replace("{name}", p.getName())

@@ -149,7 +149,7 @@ public class ChatPacketListener extends PacketAdapter {
                             }
                         }
                     }
-                    message = ChatItem.getManipulator().parse(json, c.PLACEHOLDERS, copy, styleItem(copy, c), ProtocolVersion.getClientVersion(e.getPlayer()));
+                    message = ChatItem.getManipulator().parse(json, c.PLACEHOLDERS, copy, styleItem(copy, c, e.getPlayer().getLocale()), ProtocolVersion.getClientVersion(e.getPlayer()));
                 } else {
                     if(!c.HAND_DISABLED){
                         message = ChatItem.getManipulator().parseEmpty(json, c.PLACEHOLDERS, c.HAND_NAME, c.HAND_TOOLTIP, p);
@@ -184,7 +184,7 @@ public class ChatPacketListener extends PacketAdapter {
         c = st;
     }
 
-    public static String styleItem(ItemStack item, Storage c){
+    public static String styleItem(ItemStack item, Storage c, String locale){
         String replacer = c.NAME_FORMAT;
         String amount = c.AMOUNT_FORMAT;
         boolean customName = item.hasItemMeta() && item.getItemMeta().hasDisplayName();
@@ -208,7 +208,7 @@ public class ChatPacketListener extends PacketAdapter {
                 replacer = replacer.replace(NAME, trp);
             }
         } else {
-            replacer = replacer.replace(NAME, LanguageHelper.getItemName(item, ""));
+            replacer = replacer.replace(NAME, LanguageHelper.getItemName(item, locale));
         }
         return replacer;
     }
